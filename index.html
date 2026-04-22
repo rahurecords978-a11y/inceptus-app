@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Inceptus — Ignite Your Brand</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --red: #E8231A;
+    --orange: #FF6B1A;
+    --yellow: #FFD600;
+    --blue: #1A6BE8;
+    --gray-dark: #111111;
+    --gray-mid: #1E1E1E;
+    --gray-light: #2E2E2E;
+    --white: #F5F5F5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--gray-dark);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #1a0000 0%, #2d0a00 50%, #1a1a00 100%);
+    border-bottom: 3px solid var(--orange);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+    background: linear-gradient(90deg, var(--yellow), var(--orange), var(--red));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .tagline {
+    font-size: 0.75rem;
+    color: var(--orange);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    background: radial-gradient(ellipse at center, #2d0a0010 0%, transparent 70%);
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    letter-spacing: 6px;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--yellow) 0%, var(--orange) 50%, var(--red) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: #aaa;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 1rem 0;
+  }
+
+  .tab-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    padding: 0.8rem 2.5rem;
+    border: 2px solid var(--gray-light);
+    background: transparent;
+    color: #888;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tab-btn:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  .tab-btn.active {
+    background: linear-gradient(135deg, var(--red), var(--orange));
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 4px 20px rgba(255, 107, 26, 0.4);
+  }
+
+  /* MAIN CONTAINER */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* PANELS */
+  .panel { display: none; }
+  .panel.active { display: block; animation: fadeIn 0.3s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* FORM CARDS */
+  .card {
+    background: var(--gray-mid);
+    border: 1px solid var(--gray-light);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: var(--yellow);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 0.5rem;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    background: var(--gray-light);
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(255,107,26,0.1);
+  }
+
+  textarea { resize: vertical; min-height: 100px; }
+
+  select option { background: var(--gray-mid); }
+
+  /* GRID FOR SELECTS */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+
+  /* BUTTON */
+  .btn-fire {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--red), var(--orange));
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .btn-fire:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255,107,26,0.5);
+  }
+
+  .btn-fire:active { transform: translateY(0); }
+  .btn-fire:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  /* RESULTS */
+  .result-card {
+    background: linear-gradient(135deg, #0a1628, #0d1f0d);
+    border: 1px solid var(--blue);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 1.5rem;
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .result-card.show { display: block; }
+
+  .result-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    color: var(--blue);
+    margin-bottom: 1.2rem;
+  }
+
+  .result-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .result-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 0.4rem;
+  }
+
+  .result-text {
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #ddd;
+  }
+
+  .tags-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: rgba(26,107,232,0.2);
+    border: 1px solid rgba(26,107,232,0.4);
+    border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    color: #7fb3ff;
+  }
+
+  .hashtag {
+    background: rgba(255,214,0,0.1);
+    border: 1px solid rgba(255,214,0,0.3);
+    border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    color: var(--yellow);
+  }
+
+  /* IMAGE RESULT */
+  .generated-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    border: 2px solid var(--orange);
+  }
+
+  .copy-btn {
+    background: rgba(26,107,232,0.2);
+    border: 1px solid var(--blue);
+    border-radius: 6px;
+    color: #7fb3ff;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: all 0.2s;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  .copy-btn:hover { background: rgba(26,107,232,0.4); }
+
+  /* LOADING */
+  .loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--orange);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    display: none;
+  }
+
+  .loading.show { display: block; }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255,107,26,0.2);
+    border-top-color: var(--orange);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 1rem;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--gray-light);
+    color: #555;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  footer span { color: var(--orange); }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">INCEPTUS</div>
+    <div class="tagline">Ignite Your Brand</div>
+  </div>
+  <div style="color:#666; font-size:0.8rem; letter-spacing:1px;">Powered by AI</div>
+</header>
+
+<div class="hero">
+  <h1>START THE FIRE</h1>
+  <p>Generate professional social media assets and content for every platform — fast, easy, and powered by AI.</p>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('optimizer')">📝 Content Optimizer</button>
+  <button class="tab-btn" onclick="switchTab('generator')">🎨 Asset Generator</button>
+</div>
+
+<div class="container">
+
+  <!-- CONTENT OPTIMIZER PANEL -->
+  <div class="panel active" id="panel-optimizer">
+    <div class="card">
+      <h2>🔥 Content Optimizer</h2>
+
+      <div class="form-group">
+        <label>What's your content about?</label>
+        <textarea id="opt-topic" placeholder="Example: A Carl Jung interview from 1959 about consciousness and the human psyche..."></textarea>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Platform</label>
+          <select id="opt-platform">
+            <option>YouTube</option>
+            <option>TikTok</option>
+            <option>Instagram</option>
+            <option>Facebook</option>
+            <option>Twitter / X</option>
+            <option>LinkedIn</option>
+            <option>Twitch</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Content Type</label>
+          <select id="opt-type">
+            <option>Educational Video</option>
+            <option>Music Video</option>
+            <option>Vlog</option>
+            <option>Podcast</option>
+            <option>Tutorial</option>
+            <option>Livestream</option>
+            <option>Short / Reel</option>
+            <option>Product / Brand</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn-fire" onclick="optimizeContent()">⚡ GENERATE CONTENT</button>
+    </div>
+
+    <div class="loading" id="opt-loading">
+      <div class="spinner"></div>
+      GENERATING YOUR CONTENT...
+    </div>
+
+    <div class="result-card" id="opt-result">
+      <h3>✅ Your Optimized Content</h3>
+      <div class="result-item">
+        <div class="result-label">Title</div>
+        <div class="result-text" id="res-title"></div>
+        <button class="copy-btn" onclick="copyText('res-title')">COPY TITLE</button>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Description</div>
+        <div class="result-text" id="res-desc"></div>
+        <button class="copy-btn" onclick="copyText('res-desc')">COPY DESCRIPTION</button>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Hashtags</div>
+        <div class="tags-wrap" id="res-hashtags"></div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Tags</div>
+        <div class="tags-wrap" id="res-tags"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASSET GENERATOR PANEL -->
+  <div class="panel" id="panel-generator">
+    <div class="card">
+      <h2>🎨 Asset Generator</h2>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Platform</label>
+          <select id="gen-platform">
+            <option>YouTube</option>
+            <option>TikTok</option>
+            <option>Instagram</option>
+            <option>Facebook</option>
+            <option>Twitter / X</option>
+            <option>LinkedIn</option>
+            <option>Twitch</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Asset Type</label>
+          <select id="gen-asset">
+            <option>YouTube Banner</option>
+            <option>YouTube Thumbnail</option>
+            <option>Profile Picture</option>
+            <option>Square Post</option>
+            <option>Story</option>
+            <option>Watermark</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Describe your vision</label>
+        <textarea id="gen-prompt" placeholder="Example: Dark cosmic background with a glowing angel figure, gold and purple tones, mystical energy, for a music channel called R.A.H.U. Records..."></textarea>
+      </div>
+
+      <button class="btn-fire" onclick="generateAsset()">🔥 GENERATE ASSET</button>
+    </div>
+
+    <div class="loading" id="gen-loading">
+      <div class="spinner"></div>
+      CREATING YOUR ASSET...
+    </div>
+
+    <div class="result-card" id="gen-result">
+      <h3>✅ Your Generated Asset</h3>
+      <img class="generated-image" id="gen-image" src="" alt="Generated asset"/>
+      <br/>
+      <a id="gen-download" href="#" download="inceptus-asset.png">
+        <button class="btn-fire" style="margin-top:1rem;">⬇️ DOWNLOAD IMAGE</button>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span>INCEPTUS</span> — AI-Powered Creator Tools — Built by R.A.H.U. Records
+</footer>
+
+<script>
+  // BACKEND URL — update this after Render deploys
+  const BACKEND_URL = 'https://inceptus-backend.onrender.com';
+
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('panel-' + tab).classList.add('active');
+  }
+
+  async function optimizeContent() {
+    const topic = document.getElementById('opt-topic').value.trim();
+    const platform = document.getElementById('opt-platform').value;
+    const contentType = document.getElementById('opt-type').value;
+
+    if (!topic) { alert('Please describe your content first!'); return; }
+
+    document.getElementById('opt-loading').classList.add('show');
+    document.getElementById('opt-result').classList.remove('show');
+
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/optimize`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ topic, platform, contentType })
+      });
+
+      const data = await res.json();
+
+      document.getElementById('res-title').textContent = data.title;
+      document.getElementById('res-desc').textContent = data.description;
+
+      const hashtagsEl = document.getElementById('res-hashtags');
+      hashtagsEl.innerHTML = data.hashtags.map(h => `<span class="hashtag">#${h.replace('#','')}</span>`).join('');
+
+      const tagsEl = document.getElementById('res-tags');
+      tagsEl.innerHTML = data.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+      document.getElementById('opt-result').classList.add('show');
+    } catch (err) {
+      alert('Something went wrong. Please try again!');
+      console.error(err);
+    } finally {
+      document.getElementById('opt-loading').classList.remove('show');
+    }
+  }
+
+  async function generateAsset() {
+    const prompt = document.getElementById('gen-prompt').value.trim();
+    const platform = document.getElementById('gen-platform').value;
+    const assetType = document.getElementById('gen-asset').value;
+
+    if (!prompt) { alert('Please describe your vision first!'); return; }
+
+    document.getElementById('gen-loading').classList.add('show');
+    document.getElementById('gen-result').classList.remove('show');
+
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/generate-image`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt, platform, assetType })
+      });
+
+      const data = await res.json();
+
+      const img = document.getElementById('gen-image');
+      img.src = data.imageUrl;
+
+      const dl = document.getElementById('gen-download');
+      dl.href = data.imageUrl;
+
+      document.getElementById('gen-result').classList.add('show');
+    } catch (err) {
+      alert('Something went wrong. Please try again!');
+      console.error(err);
+    } finally {
+      document.getElementById('gen-loading').classList.remove('show');
+    }
+  }
+
+  function copyText(id) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Copied to clipboard!');
+    });
+  }
+</script>
+
+</body>
+</html>
