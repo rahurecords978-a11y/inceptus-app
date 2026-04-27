@@ -507,7 +507,6 @@
 </footer>
 
 <script>
-  // BACKEND URL — update this after Render deploys
   const BACKEND_URL = 'https://inceptus-backend.onrender.com';
 
   function switchTab(tab) {
@@ -573,11 +572,24 @@
 
       const data = await res.json();
 
+      // Show the image
       const img = document.getElementById('gen-image');
       img.src = data.imageUrl;
 
+      // FIX: Fetch image as blob so browser can download it cross-origin
       const dl = document.getElementById('gen-download');
-      dl.href = data.imageUrl;
+      try {
+        const imageRes = await fetch(data.imageUrl);
+        const blob = await imageRes.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        dl.href = blobUrl;
+        dl.download = 'inceptus-asset.png';
+      } catch {
+        // Fallback: open in new tab if blob fetch fails
+        dl.href = data.imageUrl;
+        dl.target = '_blank';
+        dl.removeAttribute('download');
+      }
 
       document.getElementById('gen-result').classList.add('show');
     } catch (err) {
